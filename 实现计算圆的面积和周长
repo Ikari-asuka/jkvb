@@ -1,0 +1,26 @@
+import math
+
+def calculate_circle():
+    print("===== 圆的面积和周长计算 =====")
+    try:
+        # 获取半径
+        r = float(input("请输入圆的半径："))
+        
+        if r < 0:
+            print("半径不能为负数！")
+            return
+        
+        # 计算周长和面积
+        perimeter = 2 * math.pi * r
+        area = math.pi * r ** 2
+        
+        # 输出结果，保留两位小数
+        print(f"圆的半径：{r}")
+        print(f"圆的周长：{perimeter:.2f}")
+        print(f"圆的面积：{area:.2f}")
+    
+    except ValueError:
+        print("输入错误，请输入有效的数字！")
+
+# 运行函数
+calculate_circle()
