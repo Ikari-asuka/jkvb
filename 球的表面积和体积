@@ -1,0 +1,41 @@
+import math
+
+def calculate_sphere():
+    print("===== 球的表面积 & 体积计算 =====")
+    
+    try:
+        # 输入球的半径
+        r = float(input("请输入球的半径："))
+
+        # 校验半径必须大于 0
+        if r <= 0:
+            print("❌ 错误：半径必须大于 0！")
+            return
+
+        # 计算公式
+        surface_area = 4 * math.pi * r ** 2  # 表面积
+        volume = (4/3) * math.pi * r ** 3    # 体积
+
+        # 拼接结果文本
+        result = f"""
+===== 球计算结果 =====
+球的半径：{r}
+球的表面积：{surface_area:.2f}
+球的体积：{volume:.2f}
+======================
+        """
+
+        # 打印到屏幕
+        print(result)
+
+        # 保存到文件
+        with open("sphere_result.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        
+        print("✅ 结果已保存到：sphere_result.txt")
+
+    except ValueError:
+        print("❌ 错误：请输入有效的数字！")
+
+# 运行程序
+calculate_sphere()
