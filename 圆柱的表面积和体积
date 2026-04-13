@@ -1,0 +1,45 @@
+import math
+
+def calculate_cylinder():
+    print("===== 圆柱表面积 & 体积计算 =====")
+    
+    try:
+        # 输入底面半径和高
+        r = float(input("请输入圆柱底面半径："))
+        h = float(input("请输入圆柱的高："))
+
+        # 校验输入必须大于0
+        if r <= 0 or h <= 0:
+            print("❌ 错误：半径和高必须大于 0！")
+            return
+
+        # 计算公式
+        # 表面积 = 2πr² + 2πrh
+        surface_area = 2 * math.pi * r ** 2 + 2 * math.pi * r * h
+        # 体积 = πr²h
+        volume = math.pi * r ** 2 * h
+
+        # 拼接结果
+        result = f"""
+===== 圆柱计算结果 =====
+底面半径：{r}
+圆柱的高：{h}
+表面积：{surface_area:.2f}
+体积：{volume:.2f}
+========================
+        """
+
+        # 打印到屏幕
+        print(result)
+
+        # 保存到文件
+        with open("cylinder_result.txt", "w", encoding="utf-8") as f:
+            f.write(result)
+        
+        print("✅ 结果已保存到：cylinder_result.txt")
+
+    except ValueError:
+        print("❌ 错误：请输入有效的数字！")
+
+# 运行程序
+calculate_cylinder()
