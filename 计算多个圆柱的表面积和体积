@@ -1,0 +1,57 @@
+import math
+
+# 存储所有圆柱的结果
+all_results = []
+
+print("===== 多圆柱表面积 & 体积计算 =====")
+print("输入完成后，输入 'q' 结束\n")
+
+# 循环输入多个圆柱
+while True:
+    # 输入半径
+    r = input("请输入圆柱底面半径：")
+    if r == "q":
+        break
+    
+    # 输入高
+    h = input("请输入圆柱的高：")
+    if h == "q":
+        break
+
+    # 转成数字
+    try:
+        r = float(r)
+        h = float(h)
+    except:
+        print("❌ 请输入有效数字！\n")
+        continue
+
+    # 检查是否大于0
+    if r <= 0 or h <= 0:
+        print("❌ 半径和高必须大于0！\n")
+        continue
+
+    # 计算公式
+    表面积 = 2 * math.pi * r**2 + 2 * math.pi * r * h
+    体积 = math.pi * r**2 * h
+
+    # 保存当前结果
+    结果 = f"半径：{r} | 高：{h} | 表面积：{表面积:.2f} | 体积：{体积:.2f}"
+    all_results.append(结果)
+    
+    # 显示当前结果
+    print("✅ 计算成功：")
+    print(f"   表面积：{表面积:.2f}")
+    print(f"   体积：{体积:.2f}\n")
+
+# 所有圆柱输入完成，保存到文件
+if all_results:
+    with open("多个圆柱结果.txt", "w", encoding="utf-8") as f:
+        f.write("===== 所有圆柱计算结果 =====\n")
+        for line in all_results:
+            f.write(line + "\n")
+    
+    print("\n🎉 全部计算完成！")
+    print("✅ 结果已保存到：多个圆柱结果.txt")
+else:
+    print("\n你没有输入任何圆柱数据")
