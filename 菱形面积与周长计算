@@ -1,0 +1,58 @@
+# 菱形面积、周长计算
+import math
+
+# 存储所有结果
+results = []
+
+print("===== 菱形计算器 =====")
+print("输入完成后输入 q 结束\n")
+
+while True:
+    # 输入边长
+    side = input("请输入菱形的边长：")
+    if side == 'q':
+        break
+    
+    # 输入对角线1
+    d1 = input("请输入第一条对角线长度：")
+    if d1 == 'q':
+        break
+    
+    # 输入对角线2
+    d2 = input("请输入第二条对角线长度：")
+    if d2 == 'q':
+        break
+
+    # 数据校验
+    try:
+        side = float(side)
+        d1 = float(d1)
+        d2 = float(d2)
+    except:
+        print("请输入数字！\n")
+        continue
+
+    if side <= 0 or d1 <= 0 or d2 <= 0:
+        print("边长和对角线必须大于0！\n")
+        continue
+
+    # 计算公式
+    perimeter = 4 * side          # 周长
+    area = (d1 * d2) / 2          # 面积
+
+    # 拼接结果
+    res = f"边长：{side}，对角线1：{d1}，对角线2：{d2}，周长：{perimeter:.2f}，面积：{area:.2f}"
+    results.append(res)
+
+    print(f"✅ 周长：{perimeter:.2f}")
+    print(f"✅ 面积：{area:.2f}\n")
+
+# 保存到文件
+if results:
+    with open("菱形计算结果.txt", "w", encoding="utf-8") as f:
+        f.write("===== 菱形计算结果 =====\n")
+        for line in results:
+            f.write(line + "\n")
+    print("\n🎉 计算完成，结果已保存到 菱形计算结果.txt")
+else:
+    print("\n未输入数据")
