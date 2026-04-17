@@ -1,0 +1,62 @@
+import math
+
+results = []
+
+print("===== 三角形周长 & 面积计算器 =====")
+print("输入完成后输入 q 退出\n")
+
+while True:
+    # 输入边长 a
+    a = input("请输入边长 a：")
+    if a == 'q':
+        break
+    # 输入边长 b
+    b = input("请输入边长 b：")
+    if b == 'q':
+        break
+    # 输入边长 c
+    c = input("请输入边长 c：")
+    if c == 'q':
+        break
+
+    # 转数字
+    try:
+        a = float(a)
+        b = float(b)
+        c = float(c)
+    except:
+        print("请输入有效数字！\n")
+        continue
+
+    # 判断是否大于0
+    if a <= 0 or b <= 0 or c <= 0:
+        print("边长必须大于0！\n")
+        continue
+
+    # 判断能否构成三角形
+    if a + b <= c or a + c <= b or b + c <= a:
+        print("三边无法构成三角形！\n")
+        continue
+
+    # 周长
+    perimeter = a + b + c
+    # 海伦公式
+    s = perimeter / 2
+    area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+
+    # 记录结果
+    res = f"a={a}, b={b}, c={c} | 周长={perimeter:.2f} | 面积={area:.2f}"
+    results.append(res)
+
+    print(f"✅ 周长：{perimeter:.2f}")
+    print(f"✅ 面积：{area:.2f}\n")
+
+# 保存到文件
+if results:
+    with open("三角形计算结果.txt", "w", encoding="utf-8") as f:
+        f.write("===== 三角形计算结果 =====\n")
+        for line in results:
+            f.write(line + "\n")
+    print("\n🎉 全部计算完成，结果已保存到 文件")
+else:
+    print("\n未计算任何三角形")
