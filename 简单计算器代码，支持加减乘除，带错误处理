@@ -1,0 +1,55 @@
+# 简单计算器：支持 + - * / 四种运算
+def calculator():
+    print("===== 简单计算器 =====")
+    
+    while True:
+        # 提示输入
+        print("\n请选择运算：")
+        print("1. 加法 (+)")
+        print("2. 减法 (-)")
+        print("3. 乘法 (*)")
+        print("4. 除法 (/)")
+        print("5. 退出程序")
+        
+        choice = input("请输入选项(1/2/3/4/5)：")
+        
+        # 退出
+        if choice == "5":
+            print("再见！")
+            break
+            
+        # 只允许 1-4
+        if choice not in ["1", "2", "3", "4"]:
+            print("输入错误，请输入 1-5！")
+            continue
+        
+        try:
+            # 输入两个数字
+            num1 = float(input("请输入第一个数字："))
+            num2 = float(input("请输入第二个数字："))
+            
+            # 计算
+            if choice == "1":
+                result = num1 + num2
+                op = "+"
+            elif choice == "2":
+                result = num1 - num2
+                op = "-"
+            elif choice == "3":
+                result = num1 * num2
+                op = "*"
+            elif choice == "4":
+                if num2 == 0:
+                    print("错误：除数不能为 0！")
+                    continue
+                result = num1 / num2
+                op = "/"
+            
+            # 输出结果
+            print(f"{num1} {op} {num2} = {result}")
+            
+        except ValueError:
+            print("错误：请输入有效的数字！")
+
+# 运行计算器
+calculator()
